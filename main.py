@@ -34,6 +34,7 @@ app = FastAPI(
 )
 
 users_list = []
+hot = []
 
 @app.get("/users", response_model=List[User])
 async def get_users():
