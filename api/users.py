@@ -1,5 +1,5 @@
-from fastapi import FastAPI, Path, Query,APIRouter
 from typing import Optional, List
+from fastapi import FastAPI, Path, Query,APIRouter
 from pydantic import BaseModel
 
 ### run with uvicorn main:app --reload
@@ -16,18 +16,15 @@ class User(BaseModel):
     bio : Optional[str]
     age : Optional[int]
 
-@router.get("/users", response_model=List[User])
+@router.get("/userPort", response_model=List[User])
 async def get_users():
     return users_list
 
-@router.post("/users")
+@router.post("/userPort")
 async def create_user(user : User):
     users_list.append(user)
     return  "user list is updated"
     
-@router.get("/users/{id}")
-async def get_user(id : int = Path(..., description = "The ID of user you want to retrieve.",
-                                   ge = 0),
-                   q : str = Query(None, max_length = 5)
-                   ):
-    return {"user": users_list[id], "query": q, "email": users_list[id].email}
+@router.get("/userPort/{id}")
+async def get_user(id : int):
+    return {"user": users_list[id]}

@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Path, Query
 from typing import Optional, List
-from user import User
-from api.users import router
+from api import users
 
 ### run with uvicorn main:app --reload
 
@@ -12,7 +11,6 @@ HEre you can manage students and courses.
 ## Items
 
 You can **read items**.
-
 ## Users
 
 You will be able to:
@@ -21,7 +19,5 @@ You will be able to:
 * **Read users** (_not implemented_).
 """
 
-app = FastAPI(...
-              )
-
-app.include_router(router)
+app = FastAPI() 
+app.include_router(users.router)
