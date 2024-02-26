@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Path, Query
 from typing import Optional, List
-from api import users
+from api import users,courses, sections
 
 ### run with uvicorn main:app --reload
 
@@ -21,3 +21,5 @@ You will be able to:
 
 app = FastAPI() 
 app.include_router(users.router)
+app.include_router(courses.router)
+app.include_router(sections.router)
