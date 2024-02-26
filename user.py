@@ -7,3 +7,4 @@ class User(BaseModel):
     is_active : bool
     name : str
     bio : Optional[str]
+    age : Optional[int]
