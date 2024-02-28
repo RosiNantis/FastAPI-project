@@ -3,11 +3,11 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Enum, Text
 from sqlalchemy.orm import relationship
 import enum
 from sqlalchemy.sql.expression import null
-
+from mixins import Timestamp
 class Role(enum.Enum):
     teacher =1
     student = 2
-class User(Base):#
+class User(Timestamp, Base):#
     __tablename__ = "users"
     
     id = Column(Integer, primary_key=True, index = True)
@@ -15,7 +15,7 @@ class User(Base):#
     role = Column(Enum(Role))
     profile = relationship("Profile", back_populates="owner", uselist=False)
 
-class Profile(Base):
+class Profile(Timestamp, Base):
     __tablename__ = "profiles"
     
     id = Column(Integer, primary_key = True,  index = True)
